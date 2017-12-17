@@ -27,48 +27,58 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/NomVille" />
-
-    <LinearLayout
-        android:id="@+id/grid"
+    <HorizontalScrollView
+        android:id="@+id/horizontalscroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/citySearch"
-        android:orientation="horizontal">
+        android:scrollbars="none">
 
-        <Button
-            android:id="@+id/feteButton"
-            android:layout_height="wrap_content"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:text="Fête"/>
-
-        <Button
-            android:id="@+id/sportButton"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="Sport"/>
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/feteButton"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Fête"/>
+
+            <Button
+                android:id="@+id/sportButton"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Sport"/>
 
 
-        <Button
-            android:id="@+id/musiqueButton"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="Musique"/>
+            <Button
+                android:id="@+id/musiqueButton"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Musique"/>
 
 
-        <Button
-            android:id="@+id/jeuxButton"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="Jeux"/>
-    </LinearLayout>
+            <Button
+                android:id="@+id/jeuxButton"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Jeux"/>
 
+            <Button
+                android:id="@+id/AutresButton"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Autres"/>
+        </LinearLayout>
+    </HorizontalScrollView>
 
     <ListView
         android:id="@+id/EventListe"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/grid" />
+        android:layout_below="@id/horizontalscroll" />
 
 
 
