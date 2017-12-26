@@ -2,7 +2,10 @@ package fr.univtln.tbezenger858.infocity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
+
+import fr.univtln.lducarre365.infoCity.business.Advert;
 import fr.univtln.tbezenger858.infocity.Utils.Config;
 
 
@@ -24,9 +27,14 @@ public class EventDescriptionActivity extends AppCompatActivity{
 
         String url = Config.URL + "/advert/tous";
 
-        int numAdvert = getIntent().getIntExtra("numAdvert",-1);
-        if (numAdvert >=0 ){
-            text.setText(model.getAdverts().get(numAdvert).toString());
+        String advertTitle = getIntent().getStringExtra("advertTitle");
+        if (!advertTitle.equals("")){
+            for(Advert advert:model.getAdverts()){
+                if (advert.getTitle().equals(advertTitle)){
+                    text.setText(advert.toString());
+                    break;
+                }
+            }
         }
     }
 }

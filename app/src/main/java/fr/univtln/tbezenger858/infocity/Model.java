@@ -1,5 +1,7 @@
 package fr.univtln.tbezenger858.infocity;
 
+import android.util.Log;
+
 import org.json.JSONException;
 
 import java.io.IOException;
@@ -38,6 +40,7 @@ public class Model extends Observable{
 
     // TODO : mettre une vraie URL quand le serveur sera prêt
     public boolean getAdvertsByTown(String townName){
+        Log.d("NTM", "getAdvertsByTown: ");
         adverts = new ArrayList<>();
         try {
             String url = Config.URL + "/advert/tous";
@@ -56,6 +59,6 @@ public class Model extends Observable{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return adverts.isEmpty();
+        return !(adverts.isEmpty());
     }
 }
