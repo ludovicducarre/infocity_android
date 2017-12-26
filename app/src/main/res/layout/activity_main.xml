@@ -35,41 +35,10 @@
         android:scrollbars="none">
 
         <LinearLayout
+            android:id="@+id/linearScroll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/feteButton"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="Fête"/>
-
-            <Button
-                android:id="@+id/sportButton"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="Sport"/>
-
-
-            <Button
-                android:id="@+id/musiqueButton"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="Musique"/>
-
-
-            <Button
-                android:id="@+id/jeuxButton"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="Jeux"/>
-
-            <Button
-                android:id="@+id/AutresButton"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="Autres"/>
         </LinearLayout>
     </HorizontalScrollView>
 
