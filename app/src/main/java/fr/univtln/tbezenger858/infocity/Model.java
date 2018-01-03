@@ -38,14 +38,15 @@ public class Model extends Observable{
     }
 
 
-    // TODO : mettre une vraie URL quand le serveur sera prêt
-    public boolean getAdvertsByTown(String townName){
-        Log.d("NTM", "getAdvertsByTown: ");
+    public boolean updateAdverts(String townName){
         adverts = new ArrayList<>();
         try {
-            String url = Config.URL + "/advert/tous";
+            String url = Config.URL + "/advert/townName/"+townName;
             String JSON = new Requete().execute(url,"GET").get();
             JsonDecoder<Advert> decoder = new JsonDecoder<>();
+            if (decoder.DecoderList(JSON,Advert.class).isEmpty()) {
+                return false;
+            }
             adverts = decoder.DecoderList(JSON,Advert.class);
             setChanged();
             notifyObservers();

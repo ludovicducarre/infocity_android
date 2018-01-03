@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
         citySearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                if (model.getAdvertsByTown(query)) {
+                if (model.updateAdverts(query)) {
                     Log.d("NTM", "onQueryTextSubmit: ");
                     cityName.setText(query);
                     citySearch.setQuery("", false);
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
                     return true;
                 }
                 else {
-                    Toast.makeText(getBaseContext(),"ville introuvable",Toast.LENGTH_SHORT)
+                    Toast.makeText(getBaseContext(),"ville introuvable ou ne comportant aucune annonce",Toast.LENGTH_SHORT)
                             .show();
                 }
                 return false;
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
         // creation de la ListView
         events = new ArrayList<>();
-        events.add("Aucun événement disponible");
+        events.add("Aucune annonce pour cette ville");
         eventsList = (ListView) findViewById(R.id.EventListe);
         eventsArrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,events);
         eventsList.setAdapter(eventsArrayAdapter);
@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
                             Geocoder geocoder = new Geocoder(getBaseContext());
                             try {
                                 cityName.setText(geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1).get(0).getLocality());
-                                model.getAdvertsByTown(cityName.getText().toString());
+                                model.updateAdverts(cityName.getText().toString());
                                 eventsList.setVisibility(View.VISIBLE);
                                 citySearch.setVisibility(View.VISIBLE);
 
@@ -134,6 +134,13 @@ public class MainActivity extends AppCompatActivity implements Observer {
     public void update(Observable observable, Object o) {
         // suppression de tous les boutons existants pour en créer de nouveaux
         linearScroll.removeAllViews();
+        if (model.getAdverts().isEmpty()){
+            linearScroll.removeAllViews();
+            events.clear();
+            events.add("Aucune annonce pour cette ville");
+            eventsArrayAdapter.notifyDataSetChanged();
+            return;
+        }
 
         // Ajout d'un bouton "Tous" pour afficher tous les types d'advert
         Button button = new Button(this);
