@@ -167,6 +167,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
         for (Advert advert:model.getAdverts()) {
             events.add(advert.getTitle());
             if (!types.contains(advert.getType()) && advert.getType() != null) {
+                types.add(advert.getType());
                 button = new Button(this);
                 button.setTag(advert.getType());
                 button.setOnClickListener(new View.OnClickListener() {
@@ -174,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
                     public void onClick(View view) {
                         events.clear();
                         for (Advert advert : model.getAdverts()) {
-                            if (advert.getType() == view.getTag())
+                            if (advert.getType().equals(view.getTag()))
                                 events.add(advert.getTitle());
                         }
                         eventsArrayAdapter.notifyDataSetChanged();
